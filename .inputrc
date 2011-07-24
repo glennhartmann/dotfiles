@@ -1,0 +1,7 @@
+# set editing-mode vi
+# set keymap vi
+set completion-ignore-case On
+"\033[5C": end-of-line
+"\033[5D": beginning-of-line
+"\033[5E": forward-word
+"\033[5F": backward-word

@@ -1,0 +1,32 @@
+[user]
+	name = Glenn Hartmann
+	email = glennhartmann85@gmail.com
+
+[core]
+    autocrlf = input
+    ; safecrlf = true
+    ; pager = less
+    editor = vim
+
+[alias]
+    co = checkout
+    cob = "!sh -c 'git checkout -b \"$1\"' -"
+    ci = commit
+    st = status
+    br = branch
+    hist = log --decorate --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    lol = log --date=short --graph --decorate --pretty=oneline --abbrev-commit
+    lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+    type = cat-file -t
+    dump = cat-file -p
+    stash-unapply = !git stash show -p | git apply -R
+    count = "!sh -c 'git log --pretty=format:'' | wc -l' -"
+    countauth = "!sh -c 'git log --author=\"$1\" --pretty=format:'' | wc -l' -"
+    emptybranch = "!sh -c 'git symbolic-ref HEAD refs/heads/$1 && rm .git/index && git clean -fdx' -"
+    undolast = reset HEAD^
+
+[color]
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
