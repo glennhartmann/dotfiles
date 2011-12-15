@@ -51,3 +51,6 @@ bindkey '\e[5F' backward-word
 # %F{red}!%F{default}%(!.#.$) '
 export PROMPT=$'[%(2L.+.)%n%F{red}@%F{default}%m] [%F{cyan}%~%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})]  
 %F{red}!%F{default}%(!.#.$) '
+
+# multi-instance shared history
+setopt share_history
