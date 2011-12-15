@@ -34,6 +34,12 @@ bindkey -e
 bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
 
+# mac option/shift left/right
+bindkey '\e[5D' beginning-of-line
+bindkey '\e[5C' end-of-line
+bindkey '\e[5E' forward-word
+bindkey '\e[5F' backward-word
+
 # prompt
 # export PROMPT=[%n@%m:%C]%#\ 
 # PROMPT=$'%(!.%F{red}☠%F{default}.%F{green}❤%F{default}) [%(2L.+.)%n%F{red}@%F{default}%m] [%F{cyan}%~%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})] '
