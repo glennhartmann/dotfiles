@@ -1,0 +1,10 @@
+autodetach on # detach if something fails
+startup_message off # duh
+defscrollback 30000 # duh
+# termcapinfo xterm ti@:te@ # something about the scrollbar
+termcapinfo xterm*|xs|rxvt ti@:te@ # make native scrollbars work
+hardstatus on # have status bar thing
+hardstatus alwayslastline # have status bar thing
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %d/%m %{W}%c %{g}]' # have status bar thing
+caption always "%{= kc}%H (system load: %l)%-21=%{= .m}%D %d.%m.%Y %0c" # have status bar thing
+vbell off # stop annoying woof thing
