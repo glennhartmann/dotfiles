@@ -41,3 +41,14 @@ source .git-completion.bash
 # Google Go programming language
 export PATH=$PATH:/Users/glenn/go/bin
 # END Google Go programming language
+
+# large history
+export HISTSIZE=100000
+unset HISTFILESIZE
+
+# share history over all open terminals
+shopt -s histappend
+history -a; history -n
+export PROMPT_COMMAND="history -a && history -n"
+export HIST="history -a && history -n"
+
