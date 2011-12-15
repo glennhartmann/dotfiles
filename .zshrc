@@ -35,4 +35,13 @@ bindkey '\e[1~' beginning-of-line
 bindkey '\e[4~' end-of-line
 
 # prompt
-export PROMPT=[%n@%m:%C]%#\ 
+# export PROMPT=[%n@%m:%C]%#\ 
+# PROMPT=$'%(!.%F{red}☠%F{default}.%F{green}❤%F{default}) [%(2L.+.)%n%F{red}@%F{default}%m] [%F{cyan}%~%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})] '
+# # export PROMPT=$'[%(2L.+.)%n%F{red}@%F{default}%m] [%F{cyan}%~%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})] '
+# export PROMPT=$'[%(2L.+.)%n%F{red}@%F{default}%m] [%F{cyan}%(3~;%-2~/.../%1~;%~)%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})] %# '
+# export PROMPT=$'[%(2L.+.)%n%F{red}@%F{default}%m] [%F{cyan}%(3~;%-2~/.../%1~;%~)%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})]  
+# %(!.#.$) '
+# export PROMPT=$'[%(2L.+.)%n%F{red}@%F{default}%m] [%F{cyan}%(3~;%-2~/.../%1~;%~)%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})]  
+# %F{red}!%F{default}%(!.#.$) '
+export PROMPT=$'[%(2L.+.)%n%F{red}@%F{default}%m] [%F{cyan}%~%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})]  
+%F{red}!%F{default}%(!.#.$) '
