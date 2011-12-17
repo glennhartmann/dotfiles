@@ -40,6 +40,8 @@ bindkey '\e[5C' end-of-line
 bindkey '\e[5E' forward-word
 bindkey '\e[5F' backward-word
 
+autoload -U colors && colors
+
 # prompt
 # export PROMPT=[%n@%m:%C]%#\ 
 # PROMPT=$'%(!.%F{red}☠%F{default}.%F{green}❤%F{default}) [%(2L.+.)%n%F{red}@%F{default}%m] [%F{cyan}%~%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})] '
@@ -49,8 +51,19 @@ bindkey '\e[5F' backward-word
 # %(!.#.$) '
 # export PROMPT=$'[%(2L.+.)%n%F{red}@%F{default}%m] [%F{cyan}%(3~;%-2~/.../%1~;%~)%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})]  
 # %F{red}!%F{default}%(!.#.$) '
-export PROMPT=$'[%(2L.+.)%n%F{red}@%F{default}%m] [%F{cyan}%~%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})]  
+export PROMPT=$'[%n%F{red}@%F{default}%m] [%F{cyan}%~%F{default}] [%F{red}%T %w%F{default}] [%F{yellow}%!%F{default}] [%(?.-.%F{cyan}%?%F{default})]  
 %F{red}!%F{default}%(!.#.$) '
 
 # multi-instance shared history
 setopt share_history
+
+# bz2
+bz2c() { tar cv $1 | bzip2 > $2; };
+bz2x() { bzip2 -c -d $1 | tar xv; };
+
+# gz
+gzc() { tar cv $1 | gzip > $2; };
+gzx() { gzip -c -d $1 | tar xv; };
+
+# reconf
+alias reconf="source ~/.zshrc"
