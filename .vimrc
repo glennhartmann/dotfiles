@@ -222,3 +222,20 @@ nnoremap <silent> <leader>g :execute 'vimgrep /'.@/.'/g %'<CR>:copen<CR>
 nnoremap Q :copen<CR>
 nnoremap ]q :cnext<CR>
 nnoremap [q :cprevious<CR>
+
+" ascii underlines
+nnoremap ,u yypVr-
+nnoremap ,U yypVr=
+
+" highlight lines longer than 80 characters
+function! HighlightLongLines()
+    highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+    match OverLength /\%81v.\+/
+endfunction
+nnoremap <silent> ,ll :call HighlightLongLines()<CR>
+
+" Find next line longer than 80 characters
+nnoremap ,nll /\%81v.\+/<CR>
+
+" jk escape
+inoremap jk <Esc>
