@@ -24,6 +24,7 @@
     countauth = "!sh -c 'git log --author=\"$1\" --pretty=format:'' | wc -l' -"
     emptybranch = "!sh -c 'git symbolic-ref HEAD refs/heads/$1 && rm .git/index && git clean -fdx' -"
     undolast = reset HEAD^
+    commitall = "!sh -c 'git add -A && git commit -m \"$1\"' -"
 
 [color]
     branch = auto
