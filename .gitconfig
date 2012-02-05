@@ -25,6 +25,7 @@
     emptybranch = "!sh -c 'git symbolic-ref HEAD refs/heads/$1 && rm .git/index && git clean -fdx' -"
     undolast = reset HEAD^
     commitall = "!sh -c 'git add -A && git commit -m \"$1\"' -"
+    commitallamend = "!sh -c 'git add -A && git commit --amend -m \"$1\"' -"
 
 [color]
     branch = auto
