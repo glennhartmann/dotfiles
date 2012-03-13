@@ -26,6 +26,7 @@
     undolast = reset HEAD^
     commitall = "!sh -c 'git add -A && git commit -m \"$1\"' -"
     commitallamend = "!sh -c 'git add -A && git commit --amend -m \"$1\"' -"
+    pack = repack -a -d -f --depth=950 --window=950
 
 [color]
     branch = auto
