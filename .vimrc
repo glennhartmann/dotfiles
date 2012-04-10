@@ -1,3 +1,5 @@
+so ~/.vim/vundle_setup.vim
+
 " tabs and such
 set nu " number lines
 set ai " autoindent
@@ -12,10 +14,6 @@ if has("gui_running")
     set lines=50
     set columns=150
 endif
-
-" pathogen plugin loading for all plugins in ~/.vim/bundle
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
 
 " autoindent thing (meant to be used with autoclose v1.2 with line 88 commented out)
 inoremap {<CR> {<CR>}<Esc>O
