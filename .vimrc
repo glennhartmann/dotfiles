@@ -15,6 +15,10 @@ if has("gui_running")
     set columns=150
 endif
 
+" pathogen plugin loading for all plugins in ~/.vim/bundle
+call pathogen#helptags()
+call pathogen#runtime_append_all_bundles()
+
 " autoindent thing (meant to be used with autoclose v1.2 with line 88 commented out)
 inoremap {<CR> {<CR>}<Esc>O
 nmap \) i(<Esc>hx
@@ -145,6 +149,10 @@ let NERDSpaceDelims=1
 let NERD_c_alt_style=1
 " let NERD_cpp_alt_style=1
 " let NERD_java_alt_style=1
+map ,cc \cc
+map ,ci \ci
+map ,cs \cs
+map ,cu \cu
 
 " automatically write file when switching buffers
 set autowrite
@@ -237,3 +245,8 @@ nnoremap ,nll /\%81v.\+/<CR>
 
 " jk escape
 inoremap jk <Esc>
+
+" treat lolcode files as lolcode files
+au BufRead,BufNewFile *.lol set filetype=lolcode
+au BufRead,BufNewFile *.lolcode set filetype=lolcode
+au BufRead,BufNewFile *.lols set filetype=lolcode
