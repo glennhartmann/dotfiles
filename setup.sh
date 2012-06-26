@@ -2,7 +2,7 @@
 
 cd ~
 
-for i in `find .dotfiles -name "*" ! -name ".git" ! -name setup.sh -depth 1`
+for i in `find .dotfiles -name "*" ! -name ".git" ! -name setup.sh ! -name ".dotfiles" -maxdepth 1`
 do
     ln -s $i
 done
