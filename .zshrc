@@ -71,8 +71,6 @@ alias reconf="source ~/.zshrc"
 # path from bash
 export PATH="/usr/local/bin:/usr/texbin:/usr/local/i386-mingw32-4.3.0/bin:/Users/glenn/Library/Scripts/Shell Scripts:/Library/Scripts/Shell Scripts:/sw/bin:/sw/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/local/git/bin:/usr/local/MacGPG2/bin:/usr/texbin:/usr/X11/bin:/opt/local/bin:/usr/X11R6/bin:/opt/local/bin:/opt/local/sbin:/Users/glenn/go/bin:$PATH"
 
-alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
-
 # less syntax highlighting. Requires http://www.gnu.org/software/src-highlite/
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -R '

@@ -28,6 +28,7 @@
     commitallamend = "!sh -c 'git add -A && git commit --amend -m \"$1\"' -"
     pack = repack -a -d -f --depth=950 --window=950
     lsfiles = ls-tree -r --name-only HEAD
+    trackallbranches = "!sh -c 'for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master`; do git branch --track ${branch##*/} $branch; done'"
 
 [color]
     branch = auto
