@@ -74,3 +74,7 @@ export PATH="/usr/local/bin:/usr/texbin:/usr/local/i386-mingw32-4.3.0/bin:/Users
 # less syntax highlighting. Requires http://www.gnu.org/software/src-highlite/
 export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
 export LESS=' -RNMgiJ '
+
+# Add colour to ls and grep
+alias ls='ls -F --color=auto'
+alias grep='grep --color=auto'
