@@ -1,6 +1,6 @@
 [user]
-	name = Glenn Hartmann
-	email = glennhartmann85@gmail.com
+    name = Glenn Hartmann
+    email = glennhartmann85@gmail.com
 
 [core]
     autocrlf = input
@@ -8,12 +8,19 @@
     ; pager = less
     editor = vim
     deltaBaseCacheLimit = 1G
+    difftool = vimdiff
+
+[difftool "vimdiff"]
+    cmd = "vim -d -c \"wincmd l\" \"$LOCAL\" \"$REMOTE\""
 
 [alias]
+    ignored = ls-files --others -i --exclude-standard
     co = checkout
     cob = "!sh -c 'git checkout -b \"$1\"' -"
+    cobo = "!sh -c 'git checkout -b \"$1\" \"$2\"' -"
+    coB = "!sh -c 'git checkout -B \"$1\"' -"
     ci = commit
-    st = status
+    st = status -sb
     br = branch
     hist = log --decorate --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     lol = log --date=short --graph --decorate --pretty=oneline --abbrev-commit
@@ -30,9 +37,20 @@
     pack = repack -a -d -f --depth=950 --window=950
     lsfiles = ls-tree -r --name-only HEAD
     trackallbranches = "!sh -c 'for branch in `git branch -a | grep remotes | grep -v HEAD | grep -v master`; do git branch --track ${branch##*/} $branch; done'"
+    diffmaster = "!sh -c 'git diff `git merge-base HEAD master`'"
+    difftoolmaster = "!sh -c 'git difftool `git merge-base HEAD master`'"
+    diffmasternameonly = "!sh -c 'git diff `git merge-base HEAD master` --name-only'"
+    checkoutmaster = "!sh -c 'git checkout `git merge-base HEAD master` \"$1\"' -"
 
 [color]
     branch = auto
     diff = auto
     interactive = auto
     status = auto
+
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+
+[rerere]
+    enabled = 1
