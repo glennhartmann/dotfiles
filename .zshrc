@@ -78,3 +78,12 @@ export LESS=' -RNMgiJ '
 # Add colour to ls and grep
 alias ls='ls -F --color=auto'
 alias grep='grep --color=auto'
+
+# start screen for every terminal
+if [ -z "$STY" ]; then
+    screen
+fi
+
+# bind up and down to forward/back search, similar to ^R
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
