@@ -259,3 +259,10 @@ nnoremap ,nll /\%81v.\+/<CR>
 
 " jk escape
 inoremap jk <Esc>
+
+" Use ,y and ,p to mirror y and p, but read/write to a file (~/.vimglobalregister) in order to enable cross-vim instance copy/pasting.
+map <silent> ,y y:call writefile([@0], expand("~/.vimglobalregister"))<CR>
+map <silent> ,p :let @0 = join(readfile(expand("~/.vimglobalregister")), "\n")<CR>p
+" on systems with X (and xclip and xsel), use these instead of the above to integrate directly with the X clipboard.
+" map <silent> ,y y:call writefile([@0], expand("~/.vimglobalregister"))<CR>:call system("sed 's/\\x00/\\n/g' < ~/.vimglobalregister \| xclip")<CR>
+" map <silent> ,p :call system("xsel > ~/.vimglobalregister")<CR>:let @0 = join(readfile(expand("~/.vimglobalregister")), "\n")<CR>p
