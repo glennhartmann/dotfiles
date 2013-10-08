@@ -49,8 +49,14 @@
     status = auto
 
 [merge]
-    tool = vimdiff
+    tool = vimdiffnice#vimdiff
     conflictstyle = diff3
+
+[mergetool "vimdiffnice"]
+    cmd = vimdiff -c \"wincmd J\" -c \"0\" $MERGED $LOCAL $BASE $REMOTE
 
 [rerere]
     enabled = 1
+
+[diff]
+    algorithm = patience
