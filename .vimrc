@@ -87,11 +87,11 @@ set wildignore=*.bak,*.o,*.e,*~,*.pyc,*.exe
 set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc,.class,.pyc
 
 " Colors and Highlighting
-"set t_Co=256 " turn on 256 color mode
+set t_Co=256 " turn on 256 color mode
 set showmatch " highlight matching brace
-colorscheme mydesertEx " use this color scheme
-syntax on " syntax highlighing
 set cursorline " turn on the cursor line
+colorscheme myNewDesertEx " use this color scheme
+syntax on " syntax highlighing
 
 " Search
 set hlsearch    " highlight search result
@@ -258,11 +258,16 @@ nnoremap <silent> ,ll :call HighlightLongLines()<CR>
 nnoremap ,nll /\%81v.\+/<CR>
 
 " jk escape
-inoremap jk <Esc>
+inoremap <silent> jk <Esc>
 
 " Use ,y and ,p to mirror y and p, but read/write to a file (~/.vimglobalregister) in order to enable cross-vim instance copy/pasting.
-map <silent> ,y y:call writefile([@0], expand("~/.vimglobalregister"))<CR>
-map <silent> ,p :let @0 = join(readfile(expand("~/.vimglobalregister")), "\n")<CR>p
+" map <silent> ,y y:call writefile([@0], expand("~/.vimglobalregister"))<CR>
+" map <silent> ,p :let @0 = join(readfile(expand("~/.vimglobalregister")), "\n")<CR>p
 " on systems with X (and xclip and xsel), use these instead of the above to integrate directly with the X clipboard.
-" map <silent> ,y y:call writefile([@0], expand("~/.vimglobalregister"))<CR>:call system("sed 's/\\x00/\\n/g' < ~/.vimglobalregister \| xclip")<CR>
-" map <silent> ,p :call system("xsel > ~/.vimglobalregister")<CR>:let @0 = join(readfile(expand("~/.vimglobalregister")), "\n")<CR>p
+map <silent> ,y y:call writefile([@0], expand("~/.vimglobalregister"))<CR>:call system("sed 's/\\x00/\\n/g' < ~/.vimglobalregister \| xclip")<CR>
+map <silent> ,p :call system("xsel > ~/.vimglobalregister")<CR>:let @0 = join(readfile(expand("~/.vimglobalregister")), "\n")<CR>p
+
+" better color scheme for diffing
+if &diff
+    colorscheme greens
+endif
