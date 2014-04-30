@@ -9,6 +9,7 @@
     editor = vim
     deltaBaseCacheLimit = 1G
     difftool = vimdiff
+    excludesfile = ~/.gitignore_global
 
 [difftool "vimdiff"]
     cmd = "vim -d -c \"wincmd l\" \"$LOCAL\" \"$REMOTE\""
