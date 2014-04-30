@@ -173,7 +173,9 @@ endif
 command! Makeundobak !mkdir .undobak
 
 " load abbreviations
-so ~/.vim/abbr.vim
+if filereadable("~/.vim/abbr.vim")
+    so ~/.vim/abbr.vim
+endif
 
 " open abbrevations file
 command! Abbr e ~/.vim/abbr.vim
