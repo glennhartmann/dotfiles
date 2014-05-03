@@ -328,7 +328,7 @@ main = do
 --    dzenLeftBar <- spawnPipe myXmonadBar
     dzenRightBar <- spawnPipe myStatusBar
     autolock <- spawnPipe myAutoLock
-    numLockX <- spawnPipe myNumlockX
+    numLockX <- spawnPipe myNumLockX
     xmonad $ ewmh defaults
 
 -- A structure containing your configuration settings, overriding
