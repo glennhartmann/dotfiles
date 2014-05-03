@@ -171,7 +171,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- resizabletile
     , ((modm,               xK_z     ), sendMessage MirrorShrink      )
-    , ((modm,               xK_z     ), sendMessage MirrorExpand      )
+    , ((modm,               xK_a     ), sendMessage MirrorExpand      )
     ]
     ++
 
