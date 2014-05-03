@@ -23,11 +23,14 @@ import XMonad
 import Data.Monoid
 import System.Exit
 import XMonad.Actions.GridSelect
-import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.ManageDocks
+import XMonad.Layout.Gaps
 import XMonad.Layout.Grid
 import XMonad.Layout.Maximize
 import XMonad.Layout.Minimize
+import XMonad.Layout.ResizableTile
 import XMonad.Layout.TwoPane
 import XMonad.Util.Run
 
@@ -57,29 +60,6 @@ myBorderWidth   = 2
 -- "windows key" is usually mod4Mask.
 --
 myModMask       = mod1Mask
-
--- NOTE: from 0.9.1 on numlock mask is set automatically. The numlockMask
--- setting should be removed from configs.
---
--- You can safely remove this even on earlier xmonad versions unless you
--- need to set it to something other than the default mod2Mask, (e.g. OSX).
---
--- The mask for the numlock key. Numlock status is "masked" from the
--- current modifier status, so the keybindings will work with numlock on or
--- off. You may need to change this on some systems.
---
--- You can find the numlock modifier by running "xmodmap" and looking for a
--- modifier with Num_Lock bound to it:
---
--- > $ xmodmap | grep Num
--- > mod2        Num_Lock (0x4d)
---
--- Set numlockMask = 0 if you don't have a numlock key, or want to treat
--- numlock status separately.
---
--- myNumlockMask   = mod2Mask -- deprecated in xmonad-0.9.1
-------------------------------------------------------------
-
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -188,6 +168,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- testing
     -- , ((modm,               xK_u     ), goToSelected defaultGSConfig  )
+
+    -- resizabletile
+    , ((modm,               xK_z     ), sendMessage MirrorShrink      )
+    , ((modm,               xK_z     ), sendMessage MirrorExpand      )
     ]
     ++
 
@@ -247,11 +231,12 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = maximize (minimize (avoidStruts (tiled ||| Mirror tiled ||| twoPane ||| Full ||| Grid)))
+myLayout = gaps [(U,18)] $ maximize (minimize (tiled ||| Mirror tiled ||| resizableTile ||| Mirror resizableTile ||| twoPane ||| Full ||| Grid))
   where
     -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
     twoPane = TwoPane delta ratio
+    resizableTile = ResizableTall nmaster delta ratio []
 
     -- The default number of windows in the master pane
     nmaster = 1
@@ -295,7 +280,7 @@ myManageHook = composeAll
 -- It will add EWMH event handling to your custom event hooks by
 -- combining them with ewmhDesktopsEventHook.
 --
-myEventHook = mempty
+myEventHook = handleEventHook defaultConfig <+> fullscreenEventHook
 
 ------------------------------------------------------------------------
 -- Status bars and logging
@@ -331,6 +316,8 @@ myStartupHook = return ()
 
 --myXmonadBar = "dzen2 -ta 'l' -fg '#FFFFFF' -bg '#1B1D1E'"
 myStatusBar = "conky -c ~/.xmonad/.conky_dzen | dzen2 -ta 'r' -bg '#1B1D1E' -fg '#FFFFFF'"
+myAutoLock = "xautolock -time 5 -locker \"gnome-screensaver-command -l\" -notify 10 -notifier \"notify-send -t 5000 -i gtk-dialog-info 'Locking in 10 seconds'\""
+myNumLockX = "numlockx on"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -340,7 +327,9 @@ myStatusBar = "conky -c ~/.xmonad/.conky_dzen | dzen2 -ta 'r' -bg '#1B1D1E' -fg 
 main = do
 --    dzenLeftBar <- spawnPipe myXmonadBar
     dzenRightBar <- spawnPipe myStatusBar
-    xmonad defaults
+    autolock <- spawnPipe myAutoLock
+    numLockX <- spawnPipe myNumlockX
+    xmonad $ ewmh defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
@@ -355,8 +344,6 @@ defaults = defaultConfig {
         {- clickJustFocuses   = myClickJustFocuses, -} -- this should work in the 0.11 release according to https://code.google.com/p/xmonad/issues/detail?id=225
         borderWidth        = myBorderWidth,
         modMask            = myModMask,
-        -- numlockMask deprecated in 0.9.1
-        -- numlockMask        = myNumlockMask,
         workspaces         = myWorkspaces,
         normalBorderColor  = myNormalBorderColor,
         focusedBorderColor = myFocusedBorderColor,
