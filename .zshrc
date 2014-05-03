@@ -80,8 +80,17 @@ alias ls='ls -F --color=auto'
 alias grep='grep --color=auto'
 
 # start screen for every terminal
-if [ -z "$STY" ]; then
-    screen
+# if [ -z "$STY" ]; then
+    # if [ -z "$TMUX" ]; then
+        # screen
+    # fi
+# fi
+
+# start tmux for every terminal
+if [ -z "$TMUX" ]; then
+    if [ -z "$STY" ]; then
+        tmux
+    fi
 fi
 
 # bind up and down to forward/back search, similar to ^R
